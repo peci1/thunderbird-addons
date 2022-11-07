@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-FileCopyrightText: Martin Pecka
+
 let folder = null;
 
 const Persist = {

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0-only
+// SPDX-FileCopyrightText: Martin Pecka
+
 const MSG_FOLDER_GMAIL = '[Gmail]';
 let NUM_MESSAGES_TO_APPROVE = 10;
 let foldersForApproval = new Set();
