@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Mark GMail Read",
   "description": "Automatically marks all messages in the [Gmail] folder and all subfolders as read.",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "applications": {
     "gecko": {
       "id": "mark-gmail-read@peci1.cz",
@@ -14,6 +14,7 @@
   "permissions": [
     "accountsRead",
     "messagesRead",
+    "messagesUpdate",
     "notifications",
     "storage"
   ],
