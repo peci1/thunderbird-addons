@@ -2,11 +2,11 @@
   "manifest_version": 2,
   "name": "Mark GMail Read",
   "description": "Automatically marks all messages in the [Gmail] folder and all subfolders as read.",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "applications": {
     "gecko": {
       "id": "mark-gmail-read@peci1.cz",
-      "strict_min_version": "102.0"
+      "strict_min_version": "121.0"
     }
   },
   "author": "Martin Pecka",

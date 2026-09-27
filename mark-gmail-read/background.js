@@ -32,7 +32,7 @@ async function shouldHandleFolder(folder)
   if (blacklistedFolders.has(getFolderKey(folder)) || blacklistedFoldersSession.has(getFolderKey(folder)))
     return false;
 
-  let parentFolders = await messenger.folders.getParentFolders(folder);
+  let parentFolders = await messenger.folders.getParentFolders(folder.id);
   if (!parentFolders || parentFolders.length === 0)
     return false;
 
@@ -111,7 +111,7 @@ function onWindowRemoved(windowId)
 }
 
 async function processFolder(folder, hasPermission = false) {
-  messenger.messages.query({"folder": folder, "unread": true, "includeSubFolders": true}).then(
+  messenger.messages.query({"folderId": folder.id, "unread": true, "includeSubFolders": true}).then(
     async (messageList) => {
       let key = getFolderKey(folder);
       if (!hasPermission && messageList.messages.length > NUM_MESSAGES_TO_APPROVE && !approvedFolders.has(key) && !approvedFoldersSession.has(key))
@@ -176,12 +176,12 @@ async function load() {
   messenger.folders.onFolderInfoChanged.addListener(onFolderInfoChangedListener);
 
   for (let account of await messenger.accounts.list(true)) {
-    for (let folder of await messenger.folders.getSubFolders(account, true)) {
+    for (let folder of await messenger.folders.getSubFolders(account.rootFolder.id, true)) {
       for (let subFolder of folder.subFolders) {
         shouldHandleFolder(subFolder).then((should) => {
           if (!should)
             return;
-          messenger.folders.getFolderInfo(subFolder).then((info) => {
+          messenger.folders.getFolderInfo(subFolder.id).then((info) => {
             const numUnread = info.unreadMessageCount;
             console.log("MGR: SubFolder " + subFolder.name + " (" + account.id + subFolder.path + ", type " + subFolder.type + ", unread: " + numUnread + ")");
             if (numUnread > 0)
